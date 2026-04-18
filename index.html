@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAGA 777 FAKE</title>
+<style>
+  body {
+    background: linear-gradient(135deg, #222, #444);
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding-top: 20px;
+  }
+  h1 {
+    text-shadow: 0 0 10px gold;
+  }
+  #slot {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .reel {
+    width: 80px;
+    height: 80px;
+    background: black;
+    border: 3px solid gold;
+    border-radius: 10px;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px gold;
+    animation: spinStop 0.3s ease;
+  }
+  @keyframes spin {
+    0% { transform: rotateX(0deg); }
+    100% { transform: rotateX(360deg); }
+  }
+  @keyframes spinStop {
+    0% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  button, select {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background: gold;
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 0 10px gold;
+    transition: 0.2s;
+  }
+  button:hover {
+    transform: scale(1.05);
+    background: orange;
+  }
+  select {
+    background: white;
+    color: black;
+  }
+  #points {
+    margin-top: 10px;
+    font-size: 20px;
+  }
+  #message {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 18px;
+  }
+</style>
+</head>
+<body>
+
+<h1>🎰 NAGA HOKI 🎰</h1>
+
+<!-- Top Up di atas -->
+<div>
+  <label for="topup">Top Up:</label>
+  <select id="topup">
+    <option value="5000">RP5.000</option>
+    <option value="25000">RP25.000</option>
+    <option value="50000">RP50.000</option>
+    <option value="100000">RP100.000</option>
+    <option value="150000">RP150.000</option>
+    <option value="200000">RP200.000</option>
+    <option value="250000">RP250.000</option>
+    <option value="300000">RP300.000</option>
+    <option value="350000">RP350.000</option>
+    <option value="400000">RP400.000</option>
+    <option value="500000">RP500.000</option>
+    <option value="1000000">RP1.000.000</option>
+    <option value="10000000">RP10.000.000</option>
+  </select>
+  <button onclick="topUp()">💳 top up</button>
+</div>
+
+<!-- Slot -->
+<div id="slot">
+  <div class="reel">🍒</div>
+  <div class="reel">🍋</div>
+  <div class="reel">🍊</div>
+</div>
+
+<!-- Pilih Taruhan -->
+<div>
+  <label for="bet">Taruhan:</label>
+  <select id="bet">
+    <option value="2000">RP2.000</option>
+    <option value="5000">RP5.000</option>
+    <option value="10000">RP10.000</option>
+    <option value="25000">RP25.000</option>
+    <option value="50000">RP50.000</option>
+    <option value="100000">RP100.000</option>
+    <option value="150000">RP150.000</option>
+    <option value="200000">RP200.000</option>
+    <option value="250000">RP250.000</option>
+    <option value="300000">RP300.000</option>
+    <option value="350000">RP350.000</option>
+    <option value="400000">RP400.000</option>
+    <option value="500000">RP500.000</option>
+    <option value="1000000">RP1.000.000</option>
+    <option value="5000000">RP5.000.000</option>
+    <option value="10000000">RP10.000.000</option>
+  </select>
+</div>
+
+<!-- Tombol Spin -->
+<div>
+  <button onclick="spin()">🎲 Spin</button>
+  <button onclick="startAutoSpin()">⚡ Auto Spin</button>
+  <button onclick="stopAutoSpin()">⛔ Stop</button>
+</div>
+
+<!-- Saldo -->
+<div id="points">saldo anda: RP<span id="score">0</span></div>
+
+<div id="message"></div>
+
+<script>
+  const symbols = ["🍒", "🍋", "🍊", "🍇", "🍉", "⭐", "🔔"];
+  let points = 0;
+  let autoSpinInterval = null;
+
+  function spin() {
+    let bet = parseInt(document.getElementById("bet").value);
+
+    if (points < bet) {
+      document.getElementById("message").innerText = "💔 saldo tidak cukup";
+      return;
+    }
+
+    points -= bet;
+    document.getElementById("score").innerText = points.toLocaleString("id-ID");
+    document.getElementById("message").innerText = "";
+
+    let reels = document.querySelectorAll(".reel");
+
+    reels.forEach(reel => {
+      reel.style.animation = "spin 0.5s infinite";
+    });
+
+    setTimeout(() => {
+      reels.forEach(reel => {
+        reel.style.animation = "none";
+        let symbol = symbols[Math.floor(Math.random() * symbols.length)];
+        reel.innerText = symbol;
+      });
+
+      checkWin(bet);
+    }, 1500);
+  }
+
+  function checkWin(bet) {
+    let reels = document.querySelectorAll(".reel");
+    let r1 = reels[0].innerText;
+    let r2 = reels[1].innerText;
+    let r3 = reels[2].innerText;
+
+    if (r1 === r2 && r2 === r3) {
+      points += bet * 5;
+      document.getElementById("message").innerText = `🎉 Jackpot! +RP${(bet*5).toLocaleString("id-ID")}`;
+    } else if (r1 === r2 || r2 === r3 || r1 === r3) {
+      points += bet * 2;
+      document.getElementById("message").innerText = `😊 Selamat! +RP${(bet*2).toLocaleString("id-ID")}`;
+    } else {
+      document.getElementById("message").innerText = "😢 Coba lagi!";
+    }
+
+    document.getElementById("score").innerText = points.toLocaleString("id-ID");
+  }
+
+  function startAutoSpin() {
+    if (autoSpinInterval) return;
+    autoSpinInterval = setInterval(() => {
+      spin();
+    }, 2000);
+  }
+
+  function stopAutoSpin() {
+    clearInterval(autoSpinInterval);
+    autoSpinInterval = null;
+  }
+
+  function topUp() {
+    let amount = parseInt(document.getElementById("topup").value);
+    points += amount;
+    document.getElementById("score").innerText = points.toLocaleString("id-ID");
+    document.getElementById("message").innerText = `✅ Top Up Berhasil: +RP${amount.toLocaleString("id-ID")}`;
+  }
+</script>
+
+</body>
+</html>
